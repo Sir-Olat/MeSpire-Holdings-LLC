@@ -1,0 +1,50 @@
+
+
+<div id="filterrific_results">
+
+  <h4 class="center-align"> All Candidates </h4>
+
+  <div class="apple_pagination">
+    <div class="page_info">
+      <%= page_entries_info forms %>
+    </div>
+  </div>
+
+  <table class="striped" style="margin-bottom: 10px;">
+    <thead>
+    <tr>
+      <th><%= filterrific_sorting_link(@filterrific, :name) %></th>
+      <th><%= filterrific_sorting_link(@filterrific, :position) %></th>
+      <th><%= filterrific_sorting_link(@filterrific, :email) %></th>
+      <th><%= filterrific_sorting_link(@filterrific, :reference) %></th>
+      <th><%= filterrific_sorting_link(@filterrific, :document) %></th>
+      <!--<th>Name</th>-->
+      <!--<th>Mobile Number</th>-->
+      <!--<th>Referee</th>-->
+      <!--<th>CV/Other Documents</th>-->
+    </tr>
+    </thead>
+
+    <tbody>
+    <% forms.each do |f| %>
+        <tr>
+          <td><%= link_to f.name, form_path(f) %></td>
+          <td><%= f.position %></td>
+          <td><%= f.email %></td>
+          <td><% if f.reference.blank? %>
+              No Referee
+          <% else %>
+              <%= f.reference %>
+            <% end %></td>
+          <td><%= link_to f.document_file_name, f.document(:original, false), target: "_blank" %></td>
+          <td><%= link_to 'Delete', f, method: :delete, data: {confirm: 'Delete Applicant Documents??? Please note that you can\'t retrieve it back.'} %></td>
+        </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>
+
+
+<%= will_paginate forms, container: false %>
+
+

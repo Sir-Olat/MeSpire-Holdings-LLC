@@ -1,0 +1,8 @@
+<% provide(:page_title, 'Post New Job') %>
+<% provide(:home_active, 'active') %>
+
+<h5>Post New Job</h5>
+
+<%= render 'form', job: @job %>
+
+<%= link_to 'Back', jobs_path, class: 'waves-effect waves-light btn', style:'margin: 10px;' %>

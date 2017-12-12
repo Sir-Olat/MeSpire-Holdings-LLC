@@ -1,0 +1,41 @@
+# == Schema Information
+#
+# Table name: forms
+#
+#  id                    :integer          not null, primary key
+#  name                  :string
+#  address               :string
+#  email                 :string
+#  dob                   :datetime
+#  reference             :string
+#  position              :string
+#  mobile_number         :string
+#  created_at            :datetime         not null
+#  updated_at            :datetime         not null
+#  document_file_name    :string
+#  document_content_type :string
+#  document_file_size    :integer
+#  document_updated_at   :datetime
+#  linkedin_url          :string
+#  slug                  :string
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  address: MyString
+  email: MyString
+  dob: 2017-12-08 20:33:03
+  reference: MyString
+  position: MyString
+  mobile_number: 1
+
+two:
+  name: MyString
+  address: MyString
+  email: MyString
+  dob: 2017-12-08 20:33:03
+  reference: MyString
+  position: MyString
+  mobile_number: 1

@@ -1,0 +1,80 @@
+<% provide(:page_title, 'Apply for Job') %>
+
+<h4>Please fill this form to apply for this position:</h4>
+<div class="left-align">
+  <b>Instructions: </b>
+  <ol>
+    <li>Ensure you provide accurate information as your application depends on it.</li>
+    <li>Combine your CV, Cover Letter, and one other relevant professional certificate. Note that both CV and Cover Letter are compulsory and the file format must be PDF.</li>
+    <li>Ensure you fill in the Job position you're applying for as listed on the Job page.</li>
+    <li>Do not submit more than one application.</li>
+    <li>Please note that all fields marked "*" are compulsory and your application won't submit without them.</li>
+  </ol>
+</div>
+
+<%= form_for @form, url: forms_path, local: true, html: { multipart: true } do |f| %>
+
+    <% if @form.errors.any? %>
+        <div id="error_explanation">
+          <h5><%= pluralize(@form.errors.count, "error") %> prevented your application from being submitted, Please see details below:</h5>
+
+          <ul class="center-align">
+            <% @form.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <div class="field">
+      <%= f.label :name, value: 'Name*' %>
+      <%= f.text_field :name, id: :form_name %>
+    </div>
+
+    <div class="field">
+      <%= f.label :address, value: 'Home Address*' %>
+      <%= f.text_field :address, id: :form_address %>
+    </div>
+
+    <div class="field">
+      <%= f.label :email, value: 'Email*' %>
+      <%= f.email_field :email, id: :form_email %>
+    </div>
+
+    <div class="field">
+      <%= f.label :mobile_number, value: 'Mobile Number*' %>
+      <%= f.text_field :mobile_number, id: :form_mobile_number %>
+    </div>
+
+    <div class="field">
+      <%= f.label :dob, value: 'Date of Birth*' %>
+      <%= f.date_select :dob, start_year: 1960 %>
+    </div>
+
+    <div class="field">
+      <%= f.label :position, value: 'Position applying for*' %>
+      <%= f.text_field :position, id: :form_position %>
+    </div>
+
+    <div class="field">
+      <%= f.label :linkedin_url, value: 'LinkedIn Profile Url*' %>
+      <%= f.url_field :linkedin_url, id: :form_linkedin_url %>
+    </div>
+
+    <div class="field">
+      <%= f.label :reference, value: 'Referee' %>
+      <%= f.text_field :reference, id: :form_reference %>
+    </div>
+    <br>
+
+    <div class="field">
+      <%= f.label :document, value: 'Upload CV and Other Documents*' %>
+      <%= f.file_field :document, id: :form_reference %>
+    </div>
+
+    <br>
+
+    <div class="actions">
+      <%= f.submit 'Submit', class: 'waves-effect waves-light btn', style:'margin-bottom: 10px;' %>
+    </div>
+<% end %>

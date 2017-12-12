@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= yield(:page_title) %> | MeSpire</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <script src="https://cloud.tinymce.com/stable/tinymce.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Berkshire+Swash|Lobster|Marck+Script|Montserrat:400,700i" rel="stylesheet">
+
+  </head>
+
+  <body>
+  <header>
+    <div class="navbar-fixed">
+      <nav class=" cyan darken-4">
+        <div class="nav-wrapper container">
+            <%= link_to 'MeSpire', root_path, class: 'brand-logo', style: "font-family: 'Lobster', cursive;"  %>
+            <!--<a href="#" data-activates="mobile-demo" class="button-collapse side-nav"><i class="material-icons">menu</i></a>-->
+          <a class="button-collapse" href="#" data-activates="slide-out" id="button-collapse"><i class="material-icons">menu</i></a>
+              <ul id="nav-mobile" class="right hide-on-med-and-down" style="font-family: 'Montserrat', sans-serif;">
+                  <li><%= link_to 'Career', root_path, class: " #{yield(:home_active)} "%></li>
+                <li><a href="http://mespireholdings.net" target="_blank">About Us</a></li>
+              <% if admin_signed_in? %>
+                  <li><%= link_to 'All Applications', forms_path, class: " #{yield(:application_active)} " %></li>
+                  <li><%= link_to 'Sign Out', destroy_admin_session_path, method: :delete %></li>
+              <% end %>
+              </ul>
+        </div>
+      </nav>
+    </div>
+
+    <ul id="slide-out" class="side-nav" style="font-family: 'Montserrat', sans-serif;">
+      <li><%= link_to 'Career', root_path, class: " #{yield(:home_active)} "%></li>
+      <li><a href="http://mespireholdings.net">About Us</a></li>
+      <% if admin_signed_in? %>
+          <li><%= link_to 'All Applications', forms_path, class: " #{yield(:application_active)} " %></li>
+          <li><%= link_to 'Sign Out', destroy_admin_session_path, method: :delete %></li>
+      <% end %>
+    </ul>
+
+  </header>
+
+
+
+  <main>
+    <div class="container">
+      <% if flash.any? %>
+          <% flash.keys.each do |key| %>
+              <div class="alert alert-<%= key == :notice ? "success" : "danger" %>" >
+                <%= flash[key] %>
+              </div>
+
+          <% end %>
+
+      <% end %>
+     <%= yield %>
+    </div>
+  </main>
+
+
+
+  <footer class=" cyan darken-4" style="max-width: 100% !important;">
+
+    <div class="footer-copyright" >
+      <div class="container" >
+        <p class="center-align">
+          © 2017 <a href="http://mespireholdings.net">MeSpire Holdings - Careers</a>
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  </body>
+</html>
+
+
+

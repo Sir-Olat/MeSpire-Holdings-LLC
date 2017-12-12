@@ -1,0 +1,19 @@
+<% provide(:page_title, "#{@job.title}" ) %>
+<% provide(:home_active, 'active') %>
+
+<div class="">
+
+  <h4 class="center-align">
+    <%= @job.title %>
+  </h4>
+  <p class="center-align"> <%= @job.display_day_published %> </p>
+
+  <p>
+    <%= @job.description.html_safe %>
+  </p>
+
+  <% if !admin_signed_in? %>
+      <%= link_to 'Apply for this position', new_form_path, class: 'waves-effect waves-light btn ', style: 'margin-bottom: 10px;'  %>
+  <% end %>
+
+</div>

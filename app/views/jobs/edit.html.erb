@@ -1,0 +1,9 @@
+<% provide(:page_title, 'Edit Job Opening') %>
+<% provide(:home_active, 'active') %>
+
+<h6>Edit Job Opening Requirements</h6>
+
+<%= render 'form', job: @job %>
+
+<%= link_to 'Show', @job %> |
+<%= link_to 'Back', jobs_path %>
